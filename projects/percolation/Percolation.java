@@ -1,7 +1,5 @@
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
-import java.lang.reflect.WildcardType;
-
 public class Percolation {
     private boolean[][] sites;
     private int openSitesNum;
