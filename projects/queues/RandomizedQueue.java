@@ -6,16 +6,14 @@
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Deque<Item> implements Iterable<Item> {
+public class RandomizedQueue<Item> implements Iterable<Item> {
     // items store in contents
     private Item[] contents;
-
-    // the count of items stored in the contents
-    private int count;
 
     // the left pointer, which points to the first item in contents
     private int left;
@@ -23,15 +21,33 @@ public class Deque<Item> implements Iterable<Item> {
     // the right pointer, which points to the next to the last item in contents
     private int right;
 
+    // the count of items stored in the contents
+    private int count;
+
     // The initial capacity of the contents
     private static final int INIT_CAPACITY = 32;
 
-    // construct an empty deque
-    public Deque() {
+    // construct an empty randomized queue
+    public RandomizedQueue() {
         contents = (Item[]) new Object[INIT_CAPACITY];
         count = 0;
         left = 0;
         right = 0;
+    }
+
+    // is the randomized queue empty?
+    public boolean isEmpty() {
+        return count == 0;
+    }
+
+    // is the deque full?
+    private boolean isFull() {
+        return contents.length == count;
+    }
+
+    // return the number of items on the randomized queue
+    public int size() {
+        return count;
     }
 
     // resize contents
@@ -46,42 +62,8 @@ public class Deque<Item> implements Iterable<Item> {
         right = count;
     }
 
-    // is the deque empty?
-    public boolean isEmpty() {
-        return count == 0;
-    }
-
-    // the items' count in contents
-    public int count() {
-        return count;
-    }
-
-    // is the deque full?
-    private boolean isFull() {
-        return contents.length == count;
-    }
-
-
-    // add the item to the front
-    public void addFirst(Item item) {
-        if (item == null) {
-            throw new IllegalArgumentException();
-        }
-        if (isFull()) {
-            resize(2 * count);
-        }
-
-        left -= 1;
-        if (left < 0) {
-            left += contents.length;
-        }
-        contents[left] = item;
-
-        count++;
-    }
-
-    // add the item to the back
-    public void addLast(Item item) {
+    // add the item
+    public void enqueue(Item item) {
         if (item == null) {
             throw new IllegalArgumentException();
         }
@@ -94,23 +76,17 @@ public class Deque<Item> implements Iterable<Item> {
         count++;
     }
 
-    // remove and return the item from the front
-    public Item removeFirst() {
+    // remove and return a random item
+    public Item dequeue() {
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
 
-        Item item = contents[left];
-        left = (left + 1) % contents.length;
+        int index = StdRandom.uniformInt(0, count);
+        Item item = contents[(left + index) % contents.length];
 
-        count--;
-        return item;
-    }
-
-    // remove and return the item from the back
-    public Item removeLast() {
-        if (isEmpty()) {
-            throw new NoSuchElementException();
+        for (int i = index; i < count - 1; ++i) {
+            contents[(left + i) % contents.length] = contents[(left + i + 1) % contents.length];
         }
 
         right -= 1;
@@ -119,7 +95,14 @@ public class Deque<Item> implements Iterable<Item> {
         }
 
         count--;
-        return contents[right];
+        return item;
+    }
+
+    // return a random item (but do not remove it)
+    public Item sample() {
+        int index = StdRandom.uniformInt(0, count);
+        Item item = contents[(left + index) % contents.length];
+        return item;
     }
 
     // return an iterator over items in order from front to back
@@ -143,24 +126,21 @@ public class Deque<Item> implements Iterable<Item> {
         }
     }
 
-    // unit testing
     public static void main(String[] args) {
-        Deque<String> deque = new Deque<String>();
+        RandomizedQueue<String> deque = new RandomizedQueue<>();
         int i = 0;
         while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
-            deque.addLast(item);
-            deque.addFirst(item);
-            i += 2;
+            deque.enqueue(item);
+            i += 1;
         }
         StdOut.println(i);
-        StdOut.println("(" + deque.count() + " left on queue)");
+        StdOut.println("(" + deque.size() + " left on queue)");
 
-        deque.removeFirst();
-        StdOut.println("(" + deque.count() + " left on queue)");
+        deque.dequeue();
+        StdOut.println("(" + deque.size() + " left on queue)");
 
-        deque.removeLast();
-        StdOut.println("(" + deque.count() + " left on queue)");
+        deque.dequeue();
+        StdOut.println("(" + deque.size() + " left on queue)");
     }
-
 }
