@@ -21,32 +21,22 @@ public class PercolationStats {
         simulation();
     }
 
-    // reach percolation
-    private boolean reachPercolation() {
-        for (int i = 0; i < n; ++i) {
-            if (perc.isFull(n-1, i)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     // get random (row, col) from unopened sites
     private int[] getRandomRL() {
-        int row = StdRandom.uniformInt(0, n);
-        int col = StdRandom.uniformInt(0, n);
-        while (row >= n || col >= n || row < 0 || col < 0 || perc.isOpen(row, col)) {
-            row = StdRandom.uniformInt(0, n+1);
-            col = StdRandom.uniformInt(0, n+1);
+        int row = StdRandom.uniformInt(1, n+1);
+        int col = StdRandom.uniformInt(1, n+1);
+        while (row > n || col > n || row <= 0 || col <= 0 || perc.isOpen(row, col)) {
+            row = StdRandom.uniformInt(1, n+1);
+            col = StdRandom.uniformInt(1, n+1);
         }
         return new int[] {row, col};
     }
 
     // start simulations
-    public void simulation () {
+    private void simulation () {
         for (int t = 0; t < this.trials; ++t) {
             perc = new Percolation(n);
-            while (! reachPercolation()) {
+            while (! perc.percolates()) {
                 int[] rowCol = getRandomRL();
                 perc.open(rowCol[0], rowCol[1]);
             }
