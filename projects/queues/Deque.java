@@ -52,7 +52,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     // the items' count in contents
-    public int count() {
+    public int size() {
         return count;
     }
 
@@ -154,13 +154,13 @@ public class Deque<Item> implements Iterable<Item> {
             i += 2;
         }
         StdOut.println(i);
-        StdOut.println("(" + deque.count() + " left on queue)");
+        StdOut.println("(" + deque.size() + " left on queue)");
 
         deque.removeFirst();
-        StdOut.println("(" + deque.count() + " left on queue)");
+        StdOut.println("(" + deque.size() + " left on queue)");
 
         deque.removeLast();
-        StdOut.println("(" + deque.count() + " left on queue)");
+        StdOut.println("(" + deque.size() + " left on queue)");
     }
 
 }
