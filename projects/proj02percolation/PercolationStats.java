@@ -9,40 +9,40 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
-    private Percolation percolation;
-    int thresholds[];
-
-    double mean;
-    boolean computemean = false;
-    double stddev;
-    boolean computestddev = false;
-    double confidenceLo;
-    boolean computecl = false;
-    double confidenceHi;
-    boolean computehi = false;
+    private double[] thresholds;
+    private double mean;
+    private boolean computemean = false;
+    private double stddev;
+    private boolean computestddev = false;
+    private double confidenceLo;
+    private boolean computecl = false;
+    private double confidenceHi;
+    private boolean computehi = false;
+    private double confidence95 = 1.96;
 
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials) {
         if (n <= 0 || trials <= 0) {
             throw new IllegalArgumentException("n and trials nust be positive number");
         }
-        thresholds = new int[trials];
+        thresholds = new double[trials];
         for (int i = 0; i < trials; ++i) {
-            percolation = new Percolation(n);
-            int threshold = 0;
+            Percolation percolation = new Percolation(n);
+            double threshold = 0;
             while (!percolation.percolates()) {
                 threshold++;
                 int random = StdRandom.uniformInt(n + 3, n * n + 3 * n + 1);
                 int row = random / (n + 2);
                 int col = random % (n + 2);
-                while (percolation.isOpen(row, col)) {
+                // StdOut.println(row + " " + col);
+                while (col == 0 || col == n + 1 || percolation.isOpen(row, col)) {
                     random = StdRandom.uniformInt(n + 3, n * n + 3 * n + 1);
                     row = random / (n + 2);
                     col = random % (n + 2);
                 }
                 percolation.open(row, col);
             }
-            thresholds[i] = threshold;
+            thresholds[i] = threshold / (n * n);
         }
     }
 
@@ -72,7 +72,7 @@ public class PercolationStats {
         if (!computestddev) {
             stddev();
         }
-        return mean - 1.96 * stddev / Math.sqrt(thresholds.length);
+        return mean - confidence95 * stddev / Math.sqrt(thresholds.length);
     }
 
     // high endpoint of 95% confidence interval
@@ -83,7 +83,7 @@ public class PercolationStats {
         if (!computestddev) {
             stddev();
         }
-        return mean + 1.96 * stddev / Math.sqrt(thresholds.length);
+        return mean + confidence95 * stddev / Math.sqrt(thresholds.length);
     }
 
     // test client (see below)
