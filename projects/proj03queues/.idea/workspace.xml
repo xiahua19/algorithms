@@ -1,47 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../algs4.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../../algs4.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../proj02percolation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../proj02percolation/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/distinct.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/duplicates.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mediumTale.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/permutation10.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/permutation4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/permutation5.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/permutation6.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/permutation8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tale.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tinyTale.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/AnalysisOfAlgorithms.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/BalancedSearchTrees-2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/BinarySearchTrees.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/ElementarySorts.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/ElementarySymbolTables.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/GeometricSearch.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/HashTables.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/Mergesort.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/PriorityQueues.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/Quicksort.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/SearchingApplications.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/StacksAndQueues.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part I/UnionFind.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part II/DataCompression.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part II/DirectedGraphs.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part II/Intractability.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part II/MST.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part II/MaxFlow.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part II/Reductions.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part II/RegularExpressions.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part II/ShortestPaths.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part II/StringSorts.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part II/SubstringSearch.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part II/Tries.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../slides/part II/UndirectedGraphs.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deque.java" beforeDir="false" afterPath="$PROJECT_DIR$/Deque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RandomizedQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/RandomizedQueue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,9 +46,9 @@
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectFrameBounds">
     <option name="x" value="106" />
     <option name="y" value="23" />
@@ -128,19 +94,31 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Deque.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/xiahua/csdiy/algorithms/projects/proj03queues"
+    "last_opened_file_path": "/home/xiahua/algorithms/projects/proj03queues",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-17.0.9-corretto-17.0.9-e1d2075fd9a7-d4e022e8" />
-      </set>
-    </attachedChunks>
+  <component name="RunManager">
+    <configuration name="Deque" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Deque" />
+      <module name="Algorithms, Part I" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Deque" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
