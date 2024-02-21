@@ -20,7 +20,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // return the number of items on the randomized queue
     public int size() {
-        return 1;
+        return 2;
     }
 
     // add the item
