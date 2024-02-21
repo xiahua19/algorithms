@@ -13,6 +13,12 @@ class Node<Item> {
     private Item data;
     private Node<Item> next;
     private Node<Item> prev;
+    
+    public Node() {
+        this.data = null;
+        this.next = null;
+        this.prev = null;
+    }
 
     public Node(Item data) {
         this.data = data;
