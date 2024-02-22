@@ -4,9 +4,11 @@
  *  Description:
  **************************************************************************** */
 
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
     private Node<Item> head;
@@ -18,7 +20,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private void resize() {
         int new_capacity = 2 * capacity;
-        Node<Item>[] new_nodes = (Node<Item>[]) new Object[new_capacity];
+        Node<Item>[] new_nodes = (Node<Item>[]) new Node[new_capacity];
         for (int i = 0; i < capacity; ++i) {
             new_nodes[i] = all_nodes[i];
         }
@@ -33,7 +35,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         size = 0;
         size_ = 0;
         capacity = 100;
-        all_nodes = (Node<Item>[]) new Object[capacity];
+        all_nodes = (Node<Item>[]) new Node[capacity];
     }
 
     // is the randomized queue empty?
@@ -70,6 +72,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // remove and return a random item
     public Item dequeue() {
+        if (isEmpty()) {
+            throw new java.util.NoSuchElementException("RandomizeQueue is empty");
+        }
         int random_pos = StdRandom.uniformInt(size_);
         while (all_nodes[random_pos] == null) {
             random_pos = StdRandom.uniformInt(size_);
@@ -89,14 +94,20 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             this.tail = prev_node;
             prev_node.setNext(null);
         }
-
+        else {
+            prev_node.setNext(next_node);
+            next_node.setPrev(prev_node);
+        }
         all_nodes[random_pos] = null;
         size--;
-
+        return removed_node.getData();
     }
 
     // return a random item (but do not remove it)
     public Item sample() {
+        if (isEmpty()) {
+            throw new java.util.NoSuchElementException("RandomizeQueue is empty");
+        }
         int random_pos = StdRandom.uniformInt(size_);
         while (all_nodes[random_pos] == null) {
             random_pos = StdRandom.uniformInt(size_);
@@ -106,12 +117,43 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // return an independent iterator over items in random order
     public Iterator<Item> iterator() {
-        return null;
+        Iterator<Item> iter = new Iterator<Item>() {
+            private Node<Item> curr = head;
+
+            public boolean hasNext() {
+                return curr != null;
+            }
+
+            public void remove() {
+                throw new UnsupportedOperationException("unsupported remove operation on deque");
+            }
+
+            public Item next() {
+                if (curr == null) {
+                    throw new NoSuchElementException("there is no any item in deque");
+                }
+                Item data = curr.getData();
+                curr = curr.getNext();
+                return data;
+            }
+        };
+        return iter;
     }
 
     // unit testing (required)
     public static void main(String[] args) {
-
+        RandomizedQueue<Integer> deque = new RandomizedQueue<Integer>();
+        deque.enqueue(1);
+        deque.enqueue(2);
+        deque.enqueue(3);
+        deque.enqueue(4);
+        deque.enqueue(5);
+        StdOut.println("remove element " + deque.dequeue());
+        StdOut.println("size of deque is " + deque.size());
+        Iterator<Integer> iterator = deque.iterator();
+        while (iterator.hasNext()) {
+            StdOut.print(iterator.next() + " ");
+        }
     }
 
 }
