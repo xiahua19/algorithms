@@ -17,12 +17,18 @@ import java.util.Arrays;
  */
 public class BruteCollinearPoints {
     private Point[] points;
+    private int pointsLen;
     private int numberOfSeg;
-    
+    private boolean computeSeg;
+    private LineSegment[] segmentsResult;
 
     // finds all line segments containing 4 points
     public BruteCollinearPoints(Point[] points) {
         this.points = points;
+        this.pointsLen = points.length;
+        this.numberOfSeg = 0;
+        this.computeSeg = false;
+        this.segmentsResult = null;
 
         if (points == null) {
             throw new IllegalArgumentException("input points is null");
@@ -44,14 +50,31 @@ public class BruteCollinearPoints {
 
     // the number of line segememts
     public int numberOfSegments() {
-
+        if (!this.computeSeg) {
+            segments();
+        }
+        return this.numberOfSeg;
     }
 
     // include each line segment containing 4 points exactly once. If 4 points appear on a line segment
     // in the order p->q->r->s, then you should include either the line segment p->s or s->p (but not both)
     // and you should not include subsegments such as p->r or q->r.
     public LineSegment[] segments() {
-
+        if (!this.computeSeg) {
+            for (int i = 0; i < this.pointsLen; ++i) {
+                for (int j = i; j < this.pointsLen; ++j) {
+                    for (int m = j; m < this.pointsLen; ++m) {
+                        for (int n = m; n < this.pointsLen; ++n) {
+                            if ()
+                        }
+                    }
+                }
+            }
+            this.computeSeg = true;
+            this.segmentsResult = ;
+            this.numberOfSeg = this.segmentsResult.length;
+        }
+        return this.segmentsResult;
     }
 
     // unit testing
