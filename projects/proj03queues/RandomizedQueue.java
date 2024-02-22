@@ -13,19 +13,51 @@ import java.util.NoSuchElementException;
 public class RandomizedQueue<Item> implements Iterable<Item> {
     private Node<Item> head;
     private Node<Item> tail;
-    private Node<Item>[] all_nodes;
+    private Node<Item>[] allNodes;
     private int size;
-    private int size_;
+    private int sizeN;
     private int capacity;
 
-    private void resize() {
-        int new_capacity = 2 * capacity;
-        Node<Item>[] new_nodes = (Node<Item>[]) new Node[new_capacity];
-        for (int i = 0; i < capacity; ++i) {
-            new_nodes[i] = all_nodes[i];
+    private class Node<Item> {
+        private Item data;
+        private Node<Item> next;
+        private Node<Item> prev;
+
+        public Node() {
+            this.data = null;
+            this.next = null;
+            this.prev = null;
         }
-        all_nodes = new_nodes;
-        capacity = new_capacity;
+
+        public Node(Item data) {
+            this.data = data;
+            this.next = null;
+            this.prev = null;
+        }
+
+        public Item getData() {
+            return this.data;
+        }
+
+        public Node<Item> getNext() {
+            return this.next;
+        }
+
+        public Node<Item> getPrev() {
+            return this.prev;
+        }
+
+        public void setData(Item data) {
+            this.data = data;
+        }
+
+        public void setNext(Node<Item> next) {
+            this.next = next;
+        }
+
+        public void setPrev(Node<Item> prev) {
+            this.prev = prev;
+        }
     }
 
     // construct an empty randomized queue
@@ -33,9 +65,19 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         head = null;
         tail = null;
         size = 0;
-        size_ = 0;
+        sizeN = 0;
         capacity = 100;
-        all_nodes = (Node<Item>[]) new Node[capacity];
+        allNodes = (Node<Item>[]) new Node[capacity];
+    }
+
+    private void resize() {
+        int newCapacity = 2 * capacity;
+        Node<Item>[] newNodes = (Node<Item>[]) new Node[newCapacity];
+        for (int i = 0; i < capacity; ++i) {
+            newNodes[i] = allNodes[i];
+        }
+        allNodes = newNodes;
+        capacity = newCapacity;
     }
 
     // is the randomized queue empty?
@@ -61,11 +103,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         node.setPrev(this.tail);
         this.tail = node;
 
-        all_nodes[size] = node;
+        allNodes[size] = node;
         size++;
-        size_++;
+        sizeN++;
 
-        if (size_ == capacity) {
+        if (sizeN == capacity) {
             resize();
         }
     }
@@ -75,32 +117,32 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if (isEmpty()) {
             throw new java.util.NoSuchElementException("RandomizeQueue is empty");
         }
-        int random_pos = StdRandom.uniformInt(size_);
-        while (all_nodes[random_pos] == null) {
-            random_pos = StdRandom.uniformInt(size_);
+        int randomPos = StdRandom.uniformInt(sizeN);
+        while (allNodes[randomPos] == null) {
+            randomPos = StdRandom.uniformInt(sizeN);
         }
-        Node<Item> removed_node = all_nodes[random_pos];
-        Node<Item> prev_node = removed_node.getPrev();
-        Node<Item> next_node = removed_node.getNext();
-        if (prev_node == null && next_node == null) {
+        Node<Item> removedNode = allNodes[randomPos];
+        Node<Item> prevNode = removedNode.getPrev();
+        Node<Item> nextNode = removedNode.getNext();
+        if (prevNode == null && nextNode == null) {
             this.head = null;
             this.tail = null;
         }
-        else if (prev_node == null) {
-            this.head = next_node;
-            next_node.setPrev(null);
+        else if (prevNode == null) {
+            this.head = nextNode;
+            nextNode.setPrev(null);
         }
-        else if (next_node == null) {
-            this.tail = prev_node;
-            prev_node.setNext(null);
+        else if (nextNode == null) {
+            this.tail = prevNode;
+            prevNode.setNext(null);
         }
         else {
-            prev_node.setNext(next_node);
-            next_node.setPrev(prev_node);
+            prevNode.setNext(nextNode);
+            nextNode.setPrev(prevNode);
         }
-        all_nodes[random_pos] = null;
+        allNodes[randomPos] = null;
         size--;
-        return removed_node.getData();
+        return removedNode.getData();
     }
 
     // return a random item (but do not remove it)
@@ -108,11 +150,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if (isEmpty()) {
             throw new java.util.NoSuchElementException("RandomizeQueue is empty");
         }
-        int random_pos = StdRandom.uniformInt(size_);
-        while (all_nodes[random_pos] == null) {
-            random_pos = StdRandom.uniformInt(size_);
+        int randomPos = StdRandom.uniformInt(sizeN);
+        while (allNodes[randomPos] == null) {
+            randomPos = StdRandom.uniformInt(sizeN);
         }
-        return all_nodes[random_pos].getData();
+        return allNodes[randomPos].getData();
     }
 
     // return an independent iterator over items in random order

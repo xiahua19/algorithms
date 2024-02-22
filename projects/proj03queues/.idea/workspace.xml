@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deque$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Deque$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deque.class" beforeDir="false" afterPath="$PROJECT_DIR$/Deque.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deque.java" beforeDir="false" afterPath="$PROJECT_DIR$/Deque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Permutation.class" beforeDir="false" afterPath="$PROJECT_DIR$/Permutation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Permutation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Permutation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RandomizedQueue.class" beforeDir="false" afterPath="$PROJECT_DIR$/RandomizedQueue.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RandomizedQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/RandomizedQueue.java" afterDir="false" />
     </list>
