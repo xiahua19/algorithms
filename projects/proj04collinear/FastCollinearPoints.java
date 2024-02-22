@@ -10,18 +10,11 @@ import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Arrays;
 
-/*
- * examines 4 points at a time and checks whether they all lie on the same line segment,
- * returning all such line segments.
- *
- */
-public class BruteCollinearPoints {
+public class FastCollinearPoints {
     private Point[] points;
-    private int numberOfSeg;
-    
 
-    // finds all line segments containing 4 points
-    public BruteCollinearPoints(Point[] points) {
+    // finds all line segments containint 4 or more points
+    public FastCollinearPoints(Point[] points) {
         this.points = points;
 
         if (points == null) {
@@ -39,22 +32,19 @@ public class BruteCollinearPoints {
                 throw new IllegalArgumentException("input points contains duplicated points");
             }
         }
-
     }
 
-    // the number of line segememts
+    // the number of segments
     public int numberOfSegments() {
 
     }
 
-    // include each line segment containing 4 points exactly once. If 4 points appear on a line segment
-    // in the order p->q->r->s, then you should include either the line segment p->s or s->p (but not both)
-    // and you should not include subsegments such as p->r or q->r.
+    // the line segments
     public LineSegment[] segments() {
 
     }
 
-    // unit testing
+    // unit test
     public static void main(String[] args) {
 
         // read the n points from a file
