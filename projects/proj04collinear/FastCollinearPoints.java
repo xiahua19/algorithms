@@ -86,18 +86,16 @@ public class FastCollinearPoints {
             for (int i = 0; i < this.pointsLen - 1; ++i) {
                 Point[] tmp = Arrays.copyOfRange(this.points, i + 1, this.pointsLen);
                 Arrays.sort(tmp, this.points[i].slopeOrder());
-                StdOut.println(tmp.length);
                 for (int j = 0; j < tmp.length - 1; ) {
                     int m = j + 1;
                     while (this.points[i].slopeTo(tmp[j]) == this.points[i].slopeTo(tmp[m])) {
                         m++;
                         if (m >= tmp.length) {
-                            j = m;
                             break;
                         }
                     }
-                    if (m - j > 3) {
-                        LineSegment seg = new LineSegment(points[i], tmp[--m]);
+                    if (m - j > 2) {
+                        LineSegment seg = new LineSegment(points[i], tmp[m - 1]);
                         this.segmentsResult[this.numberOfSeg] = seg;
                         this.numberOfSeg++;
                         if (this.numberOfSeg >= this.capacity) {
