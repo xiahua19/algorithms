@@ -1,7 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="" />
+    <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/../proj04collinear/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../proj04collinear/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle00.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle01.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle02.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle03.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle04.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle05.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle06.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle07.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle08.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle09.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle13.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle14.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle15.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle16.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle17.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle18.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle19.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle21.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle22.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle23.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle24.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle25.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle26.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle27.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle28.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle29.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle2x2-00.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle2x2-01.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle2x2-02.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle2x2-03.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle2x2-04.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle2x2-05.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle2x2-06.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle2x2-unsolvable1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle2x2-unsolvable2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle2x2-unsolvable3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle30.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle31.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle32.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle33.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle34.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle35.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle36.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle37.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle38.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle39.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-00.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-01.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-02.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-03.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-04.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-05.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-06.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-07.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-08.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-09.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-13.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-14.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-15.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-16.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-17.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-18.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-19.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-21.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-22.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-23.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-24.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-25.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-26.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-27.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-28.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-29.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-30.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-31.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-unsolvable.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-unsolvable1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle3x3-unsolvable2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle40.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle41.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle42.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle43.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle44.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle45.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle46.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle47.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle48.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle49.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-00.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-01.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-02.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-03.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-04.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-05.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-06.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-07.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-08.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-09.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-13.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-14.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-15.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-16.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-17.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-18.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-19.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-21.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-22.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-23.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-24.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-25.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-26.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-27.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-28.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-29.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-30.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-31.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-32.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-33.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-34.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-35.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-36.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-37.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-38.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-39.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-40.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-41.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-42.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-43.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-44.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-45.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-46.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-47.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-48.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-49.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-50.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-78.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-80.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle4x4-unsolvable.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle50.txt" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +176,11 @@
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
     <option name="SCHEME" value="Project" />
   </component>
   <component name="FindBugs-IDEA-Workspace">
@@ -28,9 +190,15 @@
   <component name="FormatOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
   <component name="ProjectFrameBounds">
     <option name="x" value="106" />
     <option name="y" value="23" />
@@ -38,6 +206,9 @@
     <option name="height" value="765" />
   </component>
   <component name="ProjectId" id="2BZwWqOJeDbrQGpNxQL7XU2irA8" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <showLibraryContents PackagesPane="false" />
@@ -69,8 +240,35 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showModules" value="false" />
     <option name="sortByType" value="true" />
+    <option name="sortKey" value="BY_TYPE" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/xiahua/algorithms/projects/proj058puzzle"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-11.0.21-corretto-11.0.21-4caba194b151-fab2e099" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <created>1708683511616</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708683511616</updated>
+    </task>
+    <servers />
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
