@@ -20,26 +20,31 @@ public class BruteCollinearPoints {
     private int pointsLen;
     private int numberOfSeg;
     private boolean computeSeg;
+    private int capacity;
     private LineSegment[] segmentsResult;
 
     // finds all line segments containing 4 points
     public BruteCollinearPoints(Point[] points) {
+        Arrays.sort(points, new Point(0, 0).slopeOrder());
+
         this.points = points;
         this.pointsLen = points.length;
         this.numberOfSeg = 0;
+        this.capacity = 100;
         this.computeSeg = false;
-        this.segmentsResult = null;
+        this.segmentsResult = new LineSegment[this.capacity];
 
+        // check whether points is null
         if (points == null) {
             throw new IllegalArgumentException("input points is null");
         }
+        // check whether points contain null
         for (int i = 0; i < points.length; ++i) {
             if (points[i] == null) {
                 throw new IllegalArgumentException("input points contains null");
             }
         }
-        Point origin = new Point(0, 0);
-        Arrays.sort(points, origin.slopeOrder());
+        // check whether points has duplicated point
         for (int i = 1; i < points.length; ++i) {
             if (points[i].compareTo(points[i - 1]) == 0) {
                 throw new IllegalArgumentException("input points contains duplicated points");
@@ -48,7 +53,24 @@ public class BruteCollinearPoints {
 
     }
 
-    // the number of line segememts
+    private void resize() {
+        LineSegment[] newLineSeg = new LineSegment[this.capacity * 2];
+        for (int i = 0; i < this.capacity; ++i) {
+            newLineSeg[i] = this.segmentsResult[i];
+        }
+        this.capacity *= 2;
+        this.segmentsResult = newLineSeg;
+    }
+
+    private LineSegment[] split() {
+        LineSegment[] newLineSeg = new LineSegment[this.numberOfSeg];
+        for (int i = 0; i < this.numberOfSeg; ++i) {
+            newLineSeg[i] = this.segmentsResult[i];
+        }
+        return newLineSeg;
+    }
+
+    // the number of line segments
     public int numberOfSegments() {
         if (!this.computeSeg) {
             segments();
@@ -62,19 +84,26 @@ public class BruteCollinearPoints {
     public LineSegment[] segments() {
         if (!this.computeSeg) {
             for (int i = 0; i < this.pointsLen; ++i) {
-                for (int j = i; j < this.pointsLen; ++j) {
-                    for (int m = j; m < this.pointsLen; ++m) {
-                        for (int n = m; n < this.pointsLen; ++n) {
-                            if ()
+                for (int j = i + 1; j < this.pointsLen; ++j) {
+                    for (int m = j + 1; m < this.pointsLen; ++m) {
+                        for (int n = m + 1; n < this.pointsLen; ++n) {
+                            if (points[i].slopeTo(points[j]) == points[i].slopeTo(points[m]) &&
+                                    points[i].slopeTo(points[j]) == points[i].slopeTo(points[n])) {
+                                LineSegment seg = new LineSegment(points[i], points[n]);
+                                this.segmentsResult[this.numberOfSeg] = seg;
+                                this.numberOfSeg++;
+                                if (this.numberOfSeg >= this.capacity) {
+                                    resize();
+                                }
+                            }
                         }
                     }
                 }
             }
             this.computeSeg = true;
-            this.segmentsResult = ;
-            this.numberOfSeg = this.segmentsResult.length;
         }
-        return this.segmentsResult;
+        LineSegment[] result = split();
+        return result;
     }
 
     // unit testing
@@ -100,7 +129,7 @@ public class BruteCollinearPoints {
         StdDraw.show();
 
         // print and draw the line segments
-        FastCollinearPoints collinear = new FastCollinearPoints(points);
+        BruteCollinearPoints collinear = new BruteCollinearPoints(points);
         for (LineSegment segment : collinear.segments()) {
             StdOut.println(segment);
             segment.draw();
