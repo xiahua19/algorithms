@@ -4,6 +4,8 @@
  *  Description:
  **************************************************************************** */
 
+import java.util.ArrayList;
+
 public class Board {
     private int[][] tiles;
     private int dim;
@@ -85,14 +87,92 @@ public class Board {
         return this.toString() == ((Board) y).toString();
     }
 
-    // all neighboring boards
-    public Iterable<Board> neighbors() {
-        return null;
+    private int[][] exch(int oriX, int oriY, int desX, int desY) {
+        int[][] exchTiles = new int[this.dim][this.dim];
+        for (int i = 0; i < this.dim; ++i) {
+            System.arraycopy(this.tiles[i], 0, exchTiles[i], 0, this.dim);
+        }
+        int tmp = exchTiles[oriX][oriY];
+        exchTiles[oriX][oriX] = exchTiles[desX][desY];
+        exchTiles[desX][desY] = tmp;
+        return exchTiles;
     }
 
+    // all neighboring boards
+    public Iterable<Board> neighbors() {
+        // find zero tile
+        int zeroRow = 0;
+        int zeroCol = 0;
+        boolean findZero = false;
+        for (int i = 0; i < this.dim; ++i) {
+            for (int j = 0; j < this.dim; ++j) {
+                if (this.tiles[i][j] == 0) {
+                    zeroRow = i;
+                    zeroCol = j;
+                    findZero = true;
+                    break;
+                }
+            }
+            if (findZero) {
+                break;
+            }
+        }
+
+        // find neighbors
+        ArrayList<Board> neighborBoards = new ArrayList<Board>();
+        if (zeroRow > 0 && zeroRow < this.dim - 1 && zeroCol > 0 && zeroCol < this.dim - 1) {
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow - 1, zeroCol)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow + 1, zeroCol)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow, zeroCol - 1)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow, zeroCol + 1)));
+        }
+        else if (zeroRow == 0 && zeroCol > 0 && zeroCol < this.dim - 1) {
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow, zeroCol - 1)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow, zeroCol + 1)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow + 1, zeroCol)));
+        }
+        else if (zeroRow == this.dim - 1 && zeroCol > 0 && zeroCol < this.dim - 1) {
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow, zeroCol - 1)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow, zeroCol + 1)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow - 1, zeroCol)));
+        }
+        else if (zeroCol == 0 && zeroRow > 0 && zeroRow < this.dim - 1) {
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow - 1, zeroCol)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow + 1, zeroCol)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow, zeroCol + 1)));
+        }
+        else if (zeroCol == this.dim - 1 && zeroRow > 0 && zeroRow < this.dim - 1) {
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow - 1, zeroCol)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow + 1, zeroCol)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow, zeroCol - 1)));
+        }
+        else if (zeroCol == 0 && zeroRow == 0) {
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow + 1, zeroCol)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow, zeroCol + 1)));
+        }
+        else if (zeroCol == 0 && zeroRow == this.dim - 1) {
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow - 1, zeroCol)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow, zeroCol + 1)));
+        }
+        else if (zeroCol == this.dim - 1 && zeroRow == 0) {
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow + 1, zeroCol)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow, zeroCol - 1)));
+        }
+        else if (zeroCol == this.dim - 1 && zeroRow == this.dim - 1) {
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow - 1, zeroCol)));
+            neighborBoards.add(new Board(exch(zeroRow, zeroCol, zeroRow, zeroCol - 1)));
+        }
+        else {
+            throw new UnsupportedOperationException("tiles is invalid");
+        }
+
+        return neighborBoards;
+    }
+
+    // TODO: need to implement this function
     // a board that is obtained by exchanging any pair of tiles
     public Board twin() {
-        return null;
+        throw new RuntimeException("not implement");
     }
 
     // unit testing (not graded)
