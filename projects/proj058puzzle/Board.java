@@ -4,6 +4,9 @@
  *  Description:
  **************************************************************************** */
 
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
+
 import java.util.ArrayList;
 
 public class Board {
@@ -20,10 +23,13 @@ public class Board {
     public String toString() {
         String tilesStr = String.valueOf(this.dim) + "\n";
         for (int i = 0; i < this.dim; ++i) {
-            for (int j = 0; j < this.dim; ++j) {
-                tilesStr += String.valueOf(tiles[i][j]);
+            for (int j = 0; j < this.dim - 1; ++j) {
+                tilesStr += String.valueOf(tiles[i][j]) + " ";
             }
-            tilesStr += "\n";
+            if (i == this.dim - 1)
+                tilesStr += String.valueOf(tiles[i][this.dim - 1]) + " ";
+            else
+                tilesStr += String.valueOf(tiles[i][this.dim - 1]) + "\n";
         }
         return tilesStr;
     }
@@ -84,7 +90,7 @@ public class Board {
 
     // does this board equual y?
     public boolean equals(Object y) {
-        return this.toString() == ((Board) y).toString();
+        return this.toString().equals(((Board) y).toString());
     }
 
     private int[][] exch(int oriX, int oriY, int desX, int desY) {
@@ -93,7 +99,7 @@ public class Board {
             System.arraycopy(this.tiles[i], 0, exchTiles[i], 0, this.dim);
         }
         int tmp = exchTiles[oriX][oriY];
-        exchTiles[oriX][oriX] = exchTiles[desX][desY];
+        exchTiles[oriX][oriY] = exchTiles[desX][desY];
         exchTiles[desX][desY] = tmp;
         return exchTiles;
     }
@@ -169,14 +175,63 @@ public class Board {
         return neighborBoards;
     }
 
-    // TODO: need to implement this function
     // a board that is obtained by exchanging any pair of tiles
     public Board twin() {
-        throw new RuntimeException("not implement");
+        // find zero tile
+        int zeroRow = 0;
+        int zeroCol = 0;
+        boolean findZero = false;
+        for (int i = 0; i < this.dim; ++i) {
+            for (int j = 0; j < this.dim; ++j) {
+                if (this.tiles[i][j] == 0) {
+                    zeroRow = i;
+                    zeroCol = j;
+                    findZero = true;
+                    break;
+                }
+            }
+            if (findZero) {
+                break;
+            }
+        }
+
+        int[] indices = new int[4];
+        int k = 0;
+        for (int i = 0; i < this.dim; ++i) {
+            for (int j = 0; j < this.dim; ++j) {
+                if (i != zeroRow || j != zeroCol) {
+                    indices[k++] = i;
+                    indices[k++] = j;
+                    if (k == indices.length) break;
+                }
+            }
+            if (k == indices.length) break;
+        }
+        int[][] tiles = exch(indices[0], indices[1], indices[2], indices[3]);
+        return new Board(tiles);
     }
 
     // unit testing (not graded)
     public static void main(String[] args) {
+        // create initial board from file
+        In in = new In(args[0]);
+        int n = in.readInt();
+        int[][] tiles = new int[n][n];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                tiles[i][j] = in.readInt();
+        Board initial = new Board(tiles);
+        Board inital2 = new Board(tiles);
+        StdOut.println(initial.equals(inital2));
+        StdOut.println(initial.equals(initial.twin()));
 
+        StdOut.println(initial);
+        StdOut.println("hanmming dis: " + initial.hamming());
+        StdOut.println("manhattan dis: " + initial.manhattan());
+        StdOut.println("Twin: ");
+        StdOut.println(initial.twin());
+        StdOut.println("Neighbors: ");
+        ArrayList<Board> ns = (ArrayList<Board>) initial.neighbors();
+        for (Board b : ns) StdOut.println(b);
     }
 }
