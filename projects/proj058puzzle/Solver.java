@@ -5,14 +5,30 @@
  **************************************************************************** */
 
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.MinPQ;
 import edu.princeton.cs.algs4.StdOut;
 
+/*
+ * Define:
+ * 1. A search node of the game to be a board.
+ * 2. The number of moves made to reach the board
+ * 3. The previous search node
+ *
+ * Step:
+ * 1. Insert the initial search node (the initial board with 0 moves and null previous search node) into a priority queue
+ * 2. Delete from the priority queue the search node with the minimum priority
+ * 3. Insert onto the priority queue all neighboring search nodes (those can be reached in one move from the dequeued search node
+ * Repeat until the search node dequeued corresponds to the goal board
+ * */
 public class Solver {
+    private MinPQ<Board> minPQ = new MinPQ<Board>();
+
     // find a solution to the initial board (using the A* algorithm)
     public Solver(Board intial) {
         if (intial == null) {
             throw new IllegalArgumentException("input board is null");
         }
+
     }
 
     // is the initial board solvable (see below)
