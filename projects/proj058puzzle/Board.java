@@ -93,6 +93,7 @@ public class Board {
         return this.toString().equals(((Board) y).toString());
     }
 
+    // exchange two tiles on board and return new board
     private int[][] exch(int oriX, int oriY, int desX, int desY) {
         int[][] exchTiles = new int[this.dim][this.dim];
         for (int i = 0; i < this.dim; ++i) {
