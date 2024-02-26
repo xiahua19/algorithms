@@ -4,10 +4,12 @@
  *  Description:
  **************************************************************************** */
 
+import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
 import edu.princeton.cs.algs4.SET;
 import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -48,11 +50,12 @@ public class PointSET {
 
     // draw all points to standard draw
     public void draw() {
+        StdDraw.setPenColor(StdDraw.RED);
+        StdDraw.setPenRadius(0.4);
         for (Iterator<Point2D> it = set.iterator(); it.hasNext(); ) {
             Point2D p = it.next();
             StdDraw.point(p.x(), p.y());
         }
-        StdDraw.show();
     }
 
     // all points that are inside the rectangle (or on the boundary)
@@ -93,6 +96,16 @@ public class PointSET {
 
     // unit testing of the methods (optional)
     public static void main(String[] args) {
-
+        String filename = args[0];
+        In in = new In(filename);
+        PointSET brute = new PointSET();
+        while (!in.isEmpty()) {
+            double x = in.readDouble();
+            double y = in.readDouble();
+            Point2D p = new Point2D(x, y);
+            StdOut.println(p.toString());
+            brute.insert(p);
+        }
+        brute.draw();
     }
 }
