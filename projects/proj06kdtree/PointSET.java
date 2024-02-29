@@ -81,7 +81,7 @@ public class PointSET {
         if (set.isEmpty()) {
             return null;
         }
-        double minDist = Double.MAX_VALUE;
+        double minDist = Double.POSITIVE_INFINITY;
         Point2D nearPoint = null;
         for (Iterator<Point2D> it = set.iterator(); it.hasNext(); ) {
             Point2D pp = it.next();

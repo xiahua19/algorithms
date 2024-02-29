@@ -35,7 +35,7 @@ public class KdTree {
     public KdTree() {
         this.root = null;
         this.size = 0;
-        this.minDist = Double.MAX_VALUE;
+        this.minDist = Double.POSITIVE_INFINITY;
         this.minPoint = null;
     }
 

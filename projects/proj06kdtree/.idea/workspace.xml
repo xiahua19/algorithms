@@ -9,9 +9,7 @@
       <change beforePath="$PROJECT_DIR$/../proj058puzzle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../proj058puzzle/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KdTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/KdTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KdTreeVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/KdTreeVisualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PointSET.class" beforeDir="false" afterPath="$PROJECT_DIR$/PointSET.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RangeSearchVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/RangeSearchVisualizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PointSET.java" beforeDir="false" afterPath="$PROJECT_DIR$/PointSET.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
