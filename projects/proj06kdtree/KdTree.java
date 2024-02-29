@@ -6,6 +6,9 @@
 
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
+import edu.princeton.cs.algs4.StdDraw;
+
+import java.util.ArrayList;
 
 public class KdTree {
     private Node root;
@@ -100,23 +103,49 @@ public class KdTree {
         else {
             if ((node.isVertical && p.x() < node.p.x()) || (!node.isVertical
                     && p.y() < node.p.y())) {
-                contains2(p, node.left);
+                return contains2(p, node.left);
             }
             else if ((node.isVertical && p.x() >= node.p.x()) || (!node.isVertical
                     && p.y() >= node.p.y())) {
-                contains2(p, node.right);
+                return contains2(p, node.right);
+            }
+            else {
+                return false;
             }
         }
     }
 
     // draw all points to standard draw
     public void draw() {
+        draw2(this.root);
+    }
 
+    private void draw2(Node node) {
+        if (node == null) {
+            return;
+        }
+        else {
+            StdDraw.point(node.p.x(), node.p.y());
+            if (node.isVertical) {
+                StdDraw.line(node.p.x(), 0, node.p.x(), 1);
+            }
+            else {
+                StdDraw.line(0, node.p.y(), 1, node.p.y());
+            }
+            draw2(node.left);
+            draw2(node.right);
+        }
     }
 
     // all points that are inside the rectangle (or on the boundary)
     public Iterable<Point2D> range(RectHV rect) {
+        ArrayList<Point2D> pointList = new ArrayList<Point2D>();
+        range2(rect, this.root, pointList);
+        return pointList;
+    }
 
+    private Iterable<Point2D> range2(RectHV rect, Node node, ArrayList<Point2D> pointList) {
+        
     }
 
     // a nearest neighbor in the set to point p; null if the set is empty
