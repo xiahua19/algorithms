@@ -41,7 +41,7 @@ public class RangeSearchVisualizer {
         // draw the points
         StdDraw.clear();
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.setPenRadius(0.01);
+        StdDraw.setPenRadius(0.02);
         brute.draw();
         StdDraw.show();
 
@@ -81,7 +81,7 @@ public class RangeSearchVisualizer {
             rect.draw();
 
             // draw the range search results for brute-force data structure in red
-            StdDraw.setPenRadius(0.03);
+            StdDraw.setPenRadius(0.003);
             StdDraw.setPenColor(StdDraw.RED);
             for (Point2D p : brute.range(rect))
                 p.draw();
