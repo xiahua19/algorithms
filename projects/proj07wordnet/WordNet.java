@@ -6,6 +6,7 @@
 
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
@@ -65,23 +66,55 @@ public class WordNet {
         return synsetsList.contains(word);
     }
 
-    // TODO
     // distance between nounA and nounB (defined below)
     public int distance(String nounA, String nounB) {
         validateParam(nounA);
         validateParam(nounB);
         validateWord(nounA);
         validateWord(nounB);
-    }
 
-    // TODO
-    private int bfs(String nounA, String nounB) {
         int numA = synsetsMap.get(nounA);
         int numB = synsetsMap.get(nounB);
-
+        int[] distFromA = bfs(nounA);
+        int[] distFromB = bfs(nounB);
+        if (distFromA[numB] != Integer.MAX_VALUE) {
+            return distFromA[numB];
+        }
+        else if (distFromB[numA] != Integer.MAX_VALUE) {
+            return distFromB[numA];
+        }
+        return -1;
     }
 
-    // TODO
+    // BFS to find the shortest path to a vertex from start;
+    private int[] bfs(String start) {
+        int num = synsetsMap.get(start);
+        int[] dist = new int[synsetsList.size()];
+        for (int i = 0; i < dist.length; ++i) {
+            dist[i] = Integer.MAX_VALUE;
+        }
+        boolean[] marked = new boolean[synsetsList.size()];
+        for (int i = 0; i < marked.length; ++i) {
+            marked[i] = false;
+        }
+
+        Queue<Integer> queue = new Queue<Integer>();
+        queue.enqueue(num);
+        marked[num] = true;
+        dist[num] = 0;
+
+        while (!queue.isEmpty()) {
+            int n = queue.dequeue();
+            for (int v : digraph.adj(num)) {
+                if (marked[v]) continue;
+                queue.enqueue(v);
+                marked[v] = true;
+                dist[v] = dist[n] + 1;
+            }
+        }
+        return dist;
+    }
+
     // a synset (second field of synsets.txt) that is the common ancestor of nounA and nounB
     // in a shortest ancestral path (define below)
     public String sap(String nounA, String nounB) {
@@ -89,6 +122,21 @@ public class WordNet {
         validateParam(nounB);
         validateWord(nounA);
         validateWord(nounB);
+
+        int numA = synsetsMap.get(nounA);
+        int numB = synsetsMap.get(nounB);
+        int[] distFromA = bfs(nounA);
+        int[] distFromB = bfs(nounB);
+        int minAncestral = -1;
+        int minDist = Integer.MAX_VALUE;
+        for (int i = 0; i < synsetsList.size(); ++i) {
+            int distSum = distFromA[i] + distFromB[i];
+            if (distSum >= 0 && distSum < minDist) {
+                minDist = distSum;
+                minAncestral = i;
+            }
+        }
+        return synsetsList.get(minAncestral);
     }
 
     // check the input is null or not

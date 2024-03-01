@@ -9,6 +9,8 @@
       <change beforePath="$PROJECT_DIR$/../proj058puzzle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../proj058puzzle/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../proj06kdtree/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../proj06kdtree/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Outcast.java" beforeDir="false" afterPath="$PROJECT_DIR$/Outcast.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAP.java" beforeDir="false" afterPath="$PROJECT_DIR$/SAP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WordNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/WordNet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,5 +158,15 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
     </layout>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Outcast.java</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

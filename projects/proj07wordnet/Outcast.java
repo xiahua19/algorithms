@@ -15,7 +15,7 @@ public class Outcast {
 
     // given an array of WordNet nouns, return an outcast
     public String outcast(String[] nouns) {
-
+        return "";
     }
 
     // unit testing
