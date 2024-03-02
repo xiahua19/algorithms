@@ -36,13 +36,14 @@ public class SAP {
 
         while (!queue.isEmpty()) {
             int n = queue.dequeue();
-            for (int v : digraph.adj(num)) {
+            for (int v : digraph.adj(n)) {
                 if (marked[v]) continue;
                 queue.enqueue(v);
                 marked[v] = true;
                 dist[v] = dist[n] + 1;
             }
         }
+        
         return dist;
     }
 

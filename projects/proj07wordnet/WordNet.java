@@ -4,31 +4,32 @@
  *  Description:
  **************************************************************************** */
 
+import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 public class WordNet {
-    private Digraph digraph;
-    private ArrayList<String> synsetsList;
-    private HashMap<String, Integer> synsetsMap;
+    private final Digraph digraph;
+    private final SAP sap;
+    private final TreeMap<Integer, String> id2Noun;
+    private final TreeMap<String, Bag<Integer>> noun2Ids;
 
     // constructor takes the name of the two input files
     public WordNet(String synsets, String hypernyms) {
         validateParam(synsets);
         validateParam(hypernyms);
 
-        synsetsList = new ArrayList<String>();
-        synsetsMap = new HashMap<String, Integer>();
+        id2Noun = new TreeMap<Integer, String>();
+        noun2Ids = new TreeMap<String, Bag<Integer>>();
 
         readSynsets(synsets);
-        digraph = new Digraph(synsetsList.size());
+        digraph = new Digraph(id2Noun.size());
         readHypernyms(hypernyms);
+        sap = new SAP(digraph);
     }
 
     // read synsets.txt, add the synset to synsetsList
@@ -36,10 +37,20 @@ public class WordNet {
         In in = new In(synsets);
         int order = 0;
         String noun = "";
-        while (!StdIn.isEmpty()) {
-            noun = in.readLine().split(",")[1];
-            synsetsList.add(noun);
-            synsetsMap.put(noun, order);
+        String[] lines = in.readAllLines();
+        while (order != lines.length) {
+            noun = lines[order].split(",")[1];
+            id2Noun.put(order, noun);
+            for (String s : noun.split(" ")) {
+                if (noun2Ids.containsKey(s)) {
+                    noun2Ids.get(s).add(order);
+                }
+                else {
+                    Bag<Integer> ids = new Bag<Integer>();
+                    ids.add(order);
+                    noun2Ids.put(s, ids);
+                }
+            }
             order++;
         }
     }
@@ -47,23 +58,27 @@ public class WordNet {
     // read hypernyms.txt, add the edge to the directed graph
     private void readHypernyms(String hypernyms) {
         In in = new In(hypernyms);
-        while (!StdIn.isEmpty()) {
-            String[] words = in.readLine().split(",");
+        int order = 0;
+        String[] lines = in.readAllLines();
+
+        while (order != lines.length) {
+            String[] words = lines[order].split(",");
             for (int i = 1; i < words.length; ++i) {
                 digraph.addEdge(Integer.parseInt(words[0]), Integer.parseInt(words[i]));
             }
+            order++;
         }
     }
 
     // returns all WordNet nouns
     public Iterable<String> nouns() {
-        return synsetsList;
+        return noun2Ids.keySet();
     }
 
     // is the word a WordNet noun?
     public boolean isNoun(String word) {
         validateParam(word);
-        return synsetsList.contains(word);
+        return noun2Ids.containsKey(word);
     }
 
     // distance between nounA and nounB (defined below)
@@ -73,46 +88,7 @@ public class WordNet {
         validateWord(nounA);
         validateWord(nounB);
 
-        int numA = synsetsMap.get(nounA);
-        int numB = synsetsMap.get(nounB);
-        int[] distFromA = bfs(nounA);
-        int[] distFromB = bfs(nounB);
-        if (distFromA[numB] != Integer.MAX_VALUE) {
-            return distFromA[numB];
-        }
-        else if (distFromB[numA] != Integer.MAX_VALUE) {
-            return distFromB[numA];
-        }
-        return -1;
-    }
-
-    // BFS to find the shortest path to a vertex from start;
-    private int[] bfs(String start) {
-        int num = synsetsMap.get(start);
-        int[] dist = new int[synsetsList.size()];
-        for (int i = 0; i < dist.length; ++i) {
-            dist[i] = Integer.MAX_VALUE;
-        }
-        boolean[] marked = new boolean[synsetsList.size()];
-        for (int i = 0; i < marked.length; ++i) {
-            marked[i] = false;
-        }
-
-        Queue<Integer> queue = new Queue<Integer>();
-        queue.enqueue(num);
-        marked[num] = true;
-        dist[num] = 0;
-
-        while (!queue.isEmpty()) {
-            int n = queue.dequeue();
-            for (int v : digraph.adj(num)) {
-                if (marked[v]) continue;
-                queue.enqueue(v);
-                marked[v] = true;
-                dist[v] = dist[n] + 1;
-            }
-        }
-        return dist;
+        return sap.length(noun2Ids.get(nounA), noun2Ids.get(nounB));
     }
 
     // a synset (second field of synsets.txt) that is the common ancestor of nounA and nounB
@@ -123,20 +99,7 @@ public class WordNet {
         validateWord(nounA);
         validateWord(nounB);
 
-        int numA = synsetsMap.get(nounA);
-        int numB = synsetsMap.get(nounB);
-        int[] distFromA = bfs(nounA);
-        int[] distFromB = bfs(nounB);
-        int minAncestral = -1;
-        int minDist = Integer.MAX_VALUE;
-        for (int i = 0; i < synsetsList.size(); ++i) {
-            int distSum = distFromA[i] + distFromB[i];
-            if (distSum >= 0 && distSum < minDist) {
-                minDist = distSum;
-                minAncestral = i;
-            }
-        }
-        return synsetsList.get(minAncestral);
+        return id2Noun.get(sap.ancestor(noun2Ids.get(nounA), noun2Ids.get(nounB)));
     }
 
     // check the input is null or not
@@ -148,8 +111,8 @@ public class WordNet {
 
     // check the input word is whether in the
     private void validateWord(String word) {
-        if (!synsetsList.contains(word)) {
-            throw new IllegalArgumentException("input word is not in synsets");
+        if (!noun2Ids.containsKey(word)) {
+            throw new IllegalArgumentException("input " + word + " is not in synsets");
         }
     }
 
