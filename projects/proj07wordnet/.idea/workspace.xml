@@ -8,13 +8,6 @@
       <change beforePath="$PROJECT_DIR$/../proj04collinear/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../proj04collinear/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../proj058puzzle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../proj058puzzle/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../proj06kdtree/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../proj06kdtree/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Outcast.class" beforeDir="false" afterPath="$PROJECT_DIR$/Outcast.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Outcast.java" beforeDir="false" afterPath="$PROJECT_DIR$/Outcast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAP.class" beforeDir="false" afterPath="$PROJECT_DIR$/SAP.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAP.java" beforeDir="false" afterPath="$PROJECT_DIR$/SAP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WordNet.class" beforeDir="false" afterPath="$PROJECT_DIR$/WordNet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WordNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/WordNet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +98,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/xiahua/algorithms/projects/proj07wordnet",
+    "last_opened_file_path": "/home/xiahua/algorithms/projects/proj08seam",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
