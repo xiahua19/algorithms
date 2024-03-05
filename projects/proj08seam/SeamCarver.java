@@ -35,6 +35,7 @@ public class SeamCarver {
     }
 
     // energy of pixel at column x and row y
+    // in this assignment, we use dual-gradient energy function
     public double energy(int x, int y) {
         validateXY(x, y);
         throw new RuntimeException("not implement");
@@ -46,6 +47,11 @@ public class SeamCarver {
     }
 
     // sequence of indices for vertical seam
+    // this is similar to the classic shortest path problem in an edge-weighted digraph
+    // except:
+    //  1. The weights are on the vertices instead of the edges.
+    //  2. We want to find the shortest path from any of W pixels in the top row to any of W pixels in the bottom row
+    //  3. The digraph is acyclic, where there is a downward from (x,y) to (x-1,y+1),(x,y+1),(x+1,y+1)
     public int[] findVerticalSeam() {
         throw new RuntimeException("not implement");
     }
