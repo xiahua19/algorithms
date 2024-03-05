@@ -6,6 +6,8 @@
 
 import edu.princeton.cs.algs4.Picture;
 
+import java.awt.Color;
+
 public class SeamCarver {
     private Picture picture;
     private int width;
@@ -38,7 +40,28 @@ public class SeamCarver {
     // in this assignment, we use dual-gradient energy function
     public double energy(int x, int y) {
         validateXY(x, y);
-        throw new RuntimeException("not implement");
+        // pixel in the edge
+        if (x == 0 || x == width - 1 || y == 0 || y == height - 1) {
+            return 100;
+        }
+        else {
+            return energyInternal(x, y);
+        }
+    }
+
+    // compute the energy of internal pixel
+    private double energyInternal(int x, int y) {
+        Color top = this.picture.get(x, y - 1);
+        Color bottom = this.picture.get(x, y + 1);
+        Color left = this.picture.get(x - 1, y);
+        Color right = this.picture.get(x + 1, y);
+        double deltaX2 = Math.pow(left.getRed() - right.getRed(), 2) +
+                Math.pow(left.getBlue() - right.getBlue(), 2) +
+                Math.pow(left.getGreen() - right.getGreen(), 2);
+        double deltaY2 = Math.pow(top.getRed() - bottom.getRed(), 2) +
+                Math.pow(top.getBlue() - bottom.getBlue(), 2) +
+                Math.pow(top.getGreen() - bottom.getGreen(), 2);
+        return Math.sqrt(deltaX2 + deltaY2);
     }
 
     // sequence of indices for horizontal seam
