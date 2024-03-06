@@ -4,7 +4,11 @@
  *  Description:
  **************************************************************************** */
 
+import edu.princeton.cs.algs4.DijkstraSP;
+import edu.princeton.cs.algs4.DirectedEdge;
+import edu.princeton.cs.algs4.EdgeWeightedDigraph;
 import edu.princeton.cs.algs4.Picture;
+import edu.princeton.cs.algs4.Stack;
 
 import java.awt.Color;
 
@@ -42,7 +46,7 @@ public class SeamCarver {
         validateXY(x, y);
         // pixel in the edge
         if (x == 0 || x == width - 1 || y == 0 || y == height - 1) {
-            return 100;
+            return 1000;
         }
         else {
             return energyInternal(x, y);
@@ -66,7 +70,56 @@ public class SeamCarver {
 
     // sequence of indices for horizontal seam
     public int[] findHorizontalSeam() {
-        throw new RuntimeException("not implement");
+        EdgeWeightedDigraph ewd = new EdgeWeightedDigraph(width * height);
+        for (int row = 0; row < height; ++row) {
+            for (int col = 0; col < width - 1; ++col) {
+                if (row != 0) {
+                    DirectedEdge de1 = new DirectedEdge(getOrder(col, row),
+                                                        getOrder(col + 1, row - 1),
+                                                        energy(col + 1, row - 1));
+                    ewd.addEdge(de1);
+                }
+
+                DirectedEdge de2 = new DirectedEdge(getOrder(col, row),
+                                                    getOrder(col + 1, row),
+                                                    energy(col + 1, row));
+                ewd.addEdge(de2);
+
+                if (row != height - 1) {
+                    DirectedEdge de3 = new DirectedEdge(getOrder(col, row),
+                                                        getOrder(col + 1, row + 1),
+                                                        energy(col + 1, row + 1));
+                    ewd.addEdge(de3);
+                }
+            }
+        }
+
+        int start = 0;
+        int end = 0;
+        double minLenth = Double.POSITIVE_INFINITY;
+        for (int s = 0; s <= getOrder(0, height - 1); s += width) {
+            DijkstraSP dsp = new DijkstraSP(ewd, s);
+            for (int e = getOrder(width - 1, 0); e <= getOrder(width - 1, height - 1); e += width) {
+                if (dsp.hasPathTo(e) && dsp.distTo(e) < minLenth) {
+                    minLenth = dsp.distTo(e);
+                    start = s;
+                    end = e;
+                }
+            }
+        }
+
+        DijkstraSP dsp = new DijkstraSP(ewd, start);
+        Stack<DirectedEdge> path = (Stack<DirectedEdge>) dsp.pathTo(end);
+        assert path.size() == width - 1;
+        int[] seam = new int[width];
+        for (int i = 0; i < width - 2; ++i) {
+            seam[i] = parseRow(path.pop().from());
+        }
+        seam[width - 2] = parseRow(path.peek().from());
+        seam[width - 1] = parseRow(path.peek().to());
+        path.pop();
+        assert path.size() == 0;
+        return seam;
     }
 
     // sequence of indices for vertical seam
@@ -76,7 +129,68 @@ public class SeamCarver {
     //  2. We want to find the shortest path from any of W pixels in the top row to any of W pixels in the bottom row
     //  3. The digraph is acyclic, where there is a downward from (x,y) to (x-1,y+1),(x,y+1),(x+1,y+1)
     public int[] findVerticalSeam() {
-        throw new RuntimeException("not implement");
+        EdgeWeightedDigraph ewd = new EdgeWeightedDigraph(width * height);
+        for (int row = 0; row < height - 1; ++row) {
+            for (int col = 0; col < width; ++col) {
+                if (col != 0) {
+                    DirectedEdge de1 = new DirectedEdge(getOrder(col, row),
+                                                        getOrder(col - 1, row + 1),
+                                                        energy(col - 1, row + 1));
+                    ewd.addEdge(de1);
+                }
+
+                DirectedEdge de2 = new DirectedEdge(getOrder(col, row),
+                                                    getOrder(col, row + 1),
+                                                    energy(col, row + 1));
+                ewd.addEdge(de2);
+
+                if (col != width - 1) {
+                    DirectedEdge de3 = new DirectedEdge(getOrder(col, row),
+                                                        getOrder(col + 1, row + 1),
+                                                        energy(col + 1, row + 1));
+                    ewd.addEdge(de3);
+                }
+            }
+        }
+
+        int start = 0;
+        int end = 0;
+        double minLenth = Double.POSITIVE_INFINITY;
+        for (int s = 0; s < width; ++s) {
+            DijkstraSP dsp = new DijkstraSP(ewd, s);
+            for (int e = getOrder(0, height - 1); e <= getOrder(width - 1, height - 1); e++) {
+                if (dsp.hasPathTo(e) && dsp.distTo(e) < minLenth) {
+                    minLenth = dsp.distTo(e);
+                    start = s;
+                    end = e;
+                }
+            }
+        }
+
+        DijkstraSP dsp = new DijkstraSP(ewd, start);
+        Stack<DirectedEdge> path = (Stack<DirectedEdge>) dsp.pathTo(end);
+        assert path.size() == height - 1;
+        int[] seam = new int[height];
+        for (int i = 0; i < height - 2; ++i) {
+            seam[i] = parseCol(path.pop().from());
+        }
+        seam[height - 2] = parseCol(path.peek().from());
+        seam[height - 1] = parseCol(path.peek().to());
+        path.pop();
+        assert path.size() == 0;
+        return seam;
+    }
+
+    private int getOrder(int col, int row) {
+        return row * width + col;
+    }
+
+    private int parseRow(int order) {
+        return order / width;
+    }
+
+    private int parseCol(int order) {
+        return order % width;
     }
 
     // remove horizontal seam for current picture
@@ -84,7 +198,18 @@ public class SeamCarver {
         validateParam(seam);
         validateReH();
         validateSeam(seam);
-        throw new RuntimeException("not implement");
+        Picture newPicture = new Picture(this.width, this.height - 1);
+        for (int col = 0; col < width; ++col) {
+            for (int row = 0; row < height - 1; ++row) {
+                if (row >= seam[col])
+                    newPicture.set(col, row, this.picture.get(col, row + 1));
+                else
+                    newPicture.set(col, row, this.picture.get(col, row));
+            }
+        }
+        this.picture = newPicture;
+        this.width = newPicture.width();
+        this.height = newPicture.height();
     }
 
     // remove vertical seam from current picture
@@ -92,7 +217,18 @@ public class SeamCarver {
         validateParam(seam);
         validateReV();
         validateSeam(seam);
-        throw new RuntimeException("not implement");
+        Picture newPicture = new Picture(this.width - 1, this.height);
+        for (int row = 0; row < this.height; ++row) {
+            for (int col = 0; col < this.width - 1; ++col) {
+                if (col >= seam[row])
+                    newPicture.set(col, row, this.picture.get(col + 1, row));
+                else
+                    newPicture.set(col, row, this.picture.get(col, row));
+            }
+        }
+        this.picture = newPicture;
+        this.height = newPicture.height();
+        this.width = newPicture.width();
     }
 
     // check whether the input is null
