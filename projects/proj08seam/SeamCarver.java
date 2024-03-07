@@ -4,18 +4,16 @@
  *  Description:
  **************************************************************************** */
 
-import edu.princeton.cs.algs4.DijkstraSP;
-import edu.princeton.cs.algs4.DirectedEdge;
-import edu.princeton.cs.algs4.EdgeWeightedDigraph;
 import edu.princeton.cs.algs4.Picture;
-import edu.princeton.cs.algs4.Stack;
 
 import java.awt.Color;
+import java.util.Arrays;
 
 public class SeamCarver {
     private Picture picture;
     private int width;
     private int height;
+    private static final int[] DIR = new int[] { -1, 0, 1 };
 
     // create a seam carver object based on the given picture
     public SeamCarver(Picture picture) {
@@ -70,55 +68,40 @@ public class SeamCarver {
 
     // sequence of indices for horizontal seam
     public int[] findHorizontalSeam() {
-        EdgeWeightedDigraph ewd = new EdgeWeightedDigraph(width * height);
-        for (int row = 0; row < height; ++row) {
-            for (int col = 0; col < width - 1; ++col) {
-                if (row != 0) {
-                    DirectedEdge de1 = new DirectedEdge(getOrder(col, row),
-                                                        getOrder(col + 1, row - 1),
-                                                        energy(col + 1, row - 1));
-                    ewd.addEdge(de1);
-                }
-
-                DirectedEdge de2 = new DirectedEdge(getOrder(col, row),
-                                                    getOrder(col + 1, row),
-                                                    energy(col + 1, row));
-                ewd.addEdge(de2);
-
-                if (row != height - 1) {
-                    DirectedEdge de3 = new DirectedEdge(getOrder(col, row),
-                                                        getOrder(col + 1, row + 1),
-                                                        energy(col + 1, row + 1));
-                    ewd.addEdge(de3);
-                }
-            }
-        }
-
-        int start = 0;
-        int end = 0;
-        double minLenth = Double.POSITIVE_INFINITY;
-        for (int s = 0; s <= getOrder(0, height - 1); s += width) {
-            DijkstraSP dsp = new DijkstraSP(ewd, s);
-            for (int e = getOrder(width - 1, 0); e <= getOrder(width - 1, height - 1); e += width) {
-                if (dsp.hasPathTo(e) && dsp.distTo(e) < minLenth) {
-                    minLenth = dsp.distTo(e);
-                    start = s;
-                    end = e;
-                }
-            }
-        }
-
-        DijkstraSP dsp = new DijkstraSP(ewd, start);
-        Stack<DirectedEdge> path = (Stack<DirectedEdge>) dsp.pathTo(end);
-        assert path.size() == width - 1;
         int[] seam = new int[width];
-        for (int i = 0; i < width - 2; ++i) {
-            seam[i] = parseRow(path.pop().from());
+        // distTo
+        double[][] distTo = new double[width][height];
+        for (double[] col : distTo)
+            Arrays.fill(col, Double.POSITIVE_INFINITY);
+        Arrays.fill(distTo[0], 0);
+        // edgeTo
+        int[][] edgeTo = new int[width][height];
+
+        int endRow = 0;
+        double minDist = Double.POSITIVE_INFINITY;
+
+        // iterate follow topological order
+        for (int col = 1; col < width; col++) {
+            for (int row = 0; row < height; row++) {
+                for (int offset : DIR) {
+                    int nRow = row + offset;
+                    if (nRow < 0 || nRow >= height) continue;
+                    // relax
+                    if (distTo[col][row] > distTo[col - 1][nRow] + energy(col, row)) {
+                        distTo[col][row] = distTo[col - 1][nRow] + energy(col, row);
+                        edgeTo[col][row] = nRow;
+                    }
+                }
+                // find the minimum distTo
+                if (col == width - 1 && distTo[col][row] < minDist) {
+                    minDist = distTo[col][row];
+                    endRow = row;
+                }
+            }
         }
-        seam[width - 2] = parseRow(path.peek().from());
-        seam[width - 1] = parseRow(path.peek().to());
-        path.pop();
-        assert path.size() == 0;
+        for (int col = width - 1, row = endRow; col >= 0; row = edgeTo[col][row], col--)
+            seam[col] = row;
+
         return seam;
     }
 
@@ -129,55 +112,40 @@ public class SeamCarver {
     //  2. We want to find the shortest path from any of W pixels in the top row to any of W pixels in the bottom row
     //  3. The digraph is acyclic, where there is a downward from (x,y) to (x-1,y+1),(x,y+1),(x+1,y+1)
     public int[] findVerticalSeam() {
-        EdgeWeightedDigraph ewd = new EdgeWeightedDigraph(width * height);
-        for (int row = 0; row < height - 1; ++row) {
-            for (int col = 0; col < width; ++col) {
-                if (col != 0) {
-                    DirectedEdge de1 = new DirectedEdge(getOrder(col, row),
-                                                        getOrder(col - 1, row + 1),
-                                                        energy(col - 1, row + 1));
-                    ewd.addEdge(de1);
-                }
-
-                DirectedEdge de2 = new DirectedEdge(getOrder(col, row),
-                                                    getOrder(col, row + 1),
-                                                    energy(col, row + 1));
-                ewd.addEdge(de2);
-
-                if (col != width - 1) {
-                    DirectedEdge de3 = new DirectedEdge(getOrder(col, row),
-                                                        getOrder(col + 1, row + 1),
-                                                        energy(col + 1, row + 1));
-                    ewd.addEdge(de3);
-                }
-            }
-        }
-
-        int start = 0;
-        int end = 0;
-        double minLenth = Double.POSITIVE_INFINITY;
-        for (int s = 0; s < width; ++s) {
-            DijkstraSP dsp = new DijkstraSP(ewd, s);
-            for (int e = getOrder(0, height - 1); e <= getOrder(width - 1, height - 1); e++) {
-                if (dsp.hasPathTo(e) && dsp.distTo(e) < minLenth) {
-                    minLenth = dsp.distTo(e);
-                    start = s;
-                    end = e;
-                }
-            }
-        }
-
-        DijkstraSP dsp = new DijkstraSP(ewd, start);
-        Stack<DirectedEdge> path = (Stack<DirectedEdge>) dsp.pathTo(end);
-        assert path.size() == height - 1;
         int[] seam = new int[height];
-        for (int i = 0; i < height - 2; ++i) {
-            seam[i] = parseCol(path.pop().from());
+        // distTo
+        double[][] distTo = new double[height][width];
+        for (double[] row : distTo)
+            Arrays.fill(row, Double.POSITIVE_INFINITY);
+        Arrays.fill(distTo[0], 0);
+        // edgeTo
+        int[][] edgeTo = new int[height][width];
+
+        int endCol = 0;
+        double minDist = Double.POSITIVE_INFINITY;
+
+        // iterate follow topological order
+        for (int row = 1; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                for (int offset : DIR) {
+                    int nCol = col + offset;
+                    if (nCol < 0 || nCol >= width) continue;
+                    // relax
+                    if (distTo[row][col] > distTo[row - 1][nCol] + energy(col, row)) {
+                        distTo[row][col] = distTo[row - 1][nCol] + energy(col, row);
+                        edgeTo[row][col] = nCol;
+                    }
+                }
+                // find the minimum distTo
+                if (row == height - 1 && distTo[row][col] < minDist) {
+                    minDist = distTo[row][col];
+                    endCol = col;
+                }
+            }
         }
-        seam[height - 2] = parseCol(path.peek().from());
-        seam[height - 1] = parseCol(path.peek().to());
-        path.pop();
-        assert path.size() == 0;
+        for (int row = height - 1, col = endCol; row >= 0; col = edgeTo[row][col], row--)
+            seam[row] = col;
+
         return seam;
     }
 
@@ -197,7 +165,7 @@ public class SeamCarver {
     public void removeHorizontalSeam(int[] seam) {
         validateParam(seam);
         validateReH();
-        validateSeam(seam);
+        validateSeam(seam, false);
         Picture newPicture = new Picture(this.width, this.height - 1);
         for (int col = 0; col < width; ++col) {
             for (int row = 0; row < height - 1; ++row) {
@@ -216,7 +184,7 @@ public class SeamCarver {
     public void removeVerticalSeam(int[] seam) {
         validateParam(seam);
         validateReV();
-        validateSeam(seam);
+        validateSeam(seam, true);
         Picture newPicture = new Picture(this.width - 1, this.height);
         for (int row = 0; row < this.height; ++row) {
             for (int col = 0; col < this.width - 1; ++col) {
@@ -249,8 +217,13 @@ public class SeamCarver {
     }
 
     // check seam is whether validate
-    private void validateSeam(int[] seam) {
-        throw new RuntimeException("not implement");
+    private void validateSeam(int[] seam, boolean isVertical) {
+        if (isVertical && seam.length != height) {
+            throw new IllegalArgumentException("seam is unvalidated");
+        }
+        if (!isVertical && seam.length != width) {
+            throw new IllegalArgumentException("seam is unvalidated");
+        }
     }
 
     // when call removeHorizontalSeam(), the height must larger than 1
@@ -265,10 +238,5 @@ public class SeamCarver {
         if (width <= 1) {
             throw new IllegalArgumentException("width is less than or equal to 1");
         }
-    }
-
-    // unit testing
-    public static void main(String[] args) {
-
     }
 }
